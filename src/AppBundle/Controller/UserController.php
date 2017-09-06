@@ -6,10 +6,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class UserController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="user_home")
      */
     public function indexAction(Request $request)
     {

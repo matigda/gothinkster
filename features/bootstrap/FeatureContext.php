@@ -10,33 +10,33 @@ use Behat\Gherkin\Node\TableNode;
 class FeatureContext implements Context
 {
     /**
-     * @When I use :arg1 method on :arg2 with data from :arg3
+     * @When I send :method request on :url with data from :fileName
      */
-    public function iUseMethodOnWithDataFrom($arg1, $arg2, $arg3)
+    public function iUseMethodOnWithDataFrom($method, $url, $fileName)
     {
         throw new PendingException();
     }
 
     /**
-     * @Then I get :arg1 http status
+     * @Then I get :status http status
      */
-    public function iGetHttpStatus($arg1)
+    public function iGetHttpStatus($status)
     {
         throw new PendingException();
     }
 
     /**
-     * @Then response body is same as in :arg1
+     * @Then response body is same as in :fileName
      */
-    public function responseBodyIsSameAsIn($arg1)
+    public function responseBodyIsSameAsIn($fileName)
     {
         throw new PendingException();
     }
 
     /**
-     * @When I use :arg1 method on :arg2
+     * @When I send :method request on :url
      */
-    public function iUseMethodOn($arg1, $arg2)
+    public function iUseMethodOn($method, $url)
     {
         throw new PendingException();
     }
