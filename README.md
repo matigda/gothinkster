@@ -1,4 +1,8 @@
 gothinkster
 ===========
 
-A Symfony project created on September 3, 2017, 5:11 pm.
+Symfony part of gothinkster/realworld application ( https://github.com/gothinkster/realworld ) 
+
+Current Travis build:
+
+[![Build Status](https://travis-ci.org/matigda/gothinkster.svg?branch=master)](https://travis-ci.org/matigda/gothinkster)
