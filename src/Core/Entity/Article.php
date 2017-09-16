@@ -1,9 +1,9 @@
 <?php
 declare(strict_types = 1);
 
-namespace AppBundle\Entity;
+namespace Core\Entity;
 
-class User
+class Article
 {
 
 }

@@ -4,7 +4,8 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "AppBundle\\": "src/AppBundle"
+            "AppBundle\\": "src/AppBundle",
+            "Core\\": "src/Core",
         },
         "classmap": [
             "app/AppKernel.php",
@@ -21,10 +22,10 @@
     },
     "require": {
         "php": ">=7.0.0",
-        "behat/behat": "^3.3",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "incenteev/composer-parameter-handler": "^2.0",
+        "ramsey/uuid": "^3.7",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
         "symfony/monolog-bundle": "^3.1.0",
@@ -34,6 +35,8 @@
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
+        "behat/behat": "^3.3",
+        "phpspec/phpspec": "^4.0",
         "sensio/generator-bundle": "^3.0"
     },
     "scripts": {
