@@ -1,0 +1,9 @@
+default:
+  extensions:
+        Behat\Symfony2Extension: ~
+
+  suites:
+      category_product_flow:
+          contexts:
+              - FeatureContext:
+                  container: '@service_container'

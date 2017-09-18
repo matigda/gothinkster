@@ -7,7 +7,7 @@ Feature: Testing user endpoints
 
   Scenario: User registration
     When I send "POST" request on "/api/users" with data from "registration.json"
-    Then I get "200" http status
+    Then I get "201" http status
     And user is added to database
     And response body is same as in "user.json"
 

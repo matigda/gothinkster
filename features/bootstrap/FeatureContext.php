@@ -1,8 +1,13 @@
 <?php
 
+use PHPUnit\Framework\Assert;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * Defines application features from the specific context.
@@ -10,11 +15,33 @@ use Behat\Gherkin\Node\TableNode;
 class FeatureContext implements Context
 {
     /**
+     * @var ContainerInterface
+     */
+    protected $container;
+
+    /**
+     * @var MockHandler
+     */
+    protected $mockHandler;
+
+    /**
+     * @var Response
+     */
+    private $response;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+    /**
      * @When I send :method request on :url with data from :fileName
      */
     public function iUseMethodOnWithDataFrom($method, $url, $fileName)
     {
-        throw new PendingException();
+        $kernel = $this->container->get('kernel');
+
+        $this->response = $kernel->handle(Request::create($url, $method, json_decode(file_get_contents(__DIR__ . '/../data/' . $fileName), true)));
     }
 
     /**
@@ -22,7 +49,7 @@ class FeatureContext implements Context
      */
     public function iGetHttpStatus($status)
     {
-        throw new PendingException();
+        Assert::assertEquals($status, $this->response->getStatusCode());
     }
 
     /**
@@ -30,7 +57,7 @@ class FeatureContext implements Context
      */
     public function responseBodyIsSameAsIn($fileName)
     {
-        throw new PendingException();
+        Assert::assertEquals(file_get_contents(__DIR__ . '/../data/' . $fileName), $this->response->getContent());
     }
 
     /**
@@ -38,7 +65,16 @@ class FeatureContext implements Context
      */
     public function iUseMethodOn($method, $url)
     {
-        throw new PendingException();
+        $kernel = $this->container->get('kernel');
+
+        $this->response = $kernel->handle(Request::create($url, $method));
+    }
+
+    /**
+     * @Then user is added to database
+     */
+    public function userIsAddedToDatabase()
+    {
     }
 
 }

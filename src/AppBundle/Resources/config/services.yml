@@ -1,0 +1,3 @@
+services:
+    use_case.register_user:
+        class: AppBundle\UseCase\RegisterUserUseCase
