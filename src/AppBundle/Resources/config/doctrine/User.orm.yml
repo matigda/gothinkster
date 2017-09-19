@@ -1,0 +1,26 @@
+Core\Entity\User:
+    type: entity
+    repositoryClass: AppBundle\Repository\UserRepository
+    table: user
+    id:
+        id:
+            type: string
+            generator: { strategy: NONE }
+    fields:
+        username:
+            type: string
+            length: 100
+        email:
+            type: string
+            length: 100
+        password:
+            type: string
+            length: 100
+        bio:
+            type: string
+            length: 100
+            nullable: true
+        image:
+            type: string
+            length: 100
+            nullable: true

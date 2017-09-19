@@ -1,6 +1,7 @@
 Feature: Testing user endpoints
 
   Scenario: User authentication
+    Given user from "registration.json" exists
     When I send "POST" request on "/api/users/login" with data from "authentication.json"
     Then I get "200" http status
     And response body is same as in "user.json"

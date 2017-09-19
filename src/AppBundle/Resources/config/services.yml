@@ -1,3 +1,17 @@
 services:
     use_case.register_user:
         class: AppBundle\UseCase\RegisterUserUseCase
+        arguments:
+            - '@repository.user'
+            - '@encoder.password'
+
+    repository.user:
+        class: AppBundle\Repository\UserRepository
+        factory: ['@doctrine.orm.entity_manager', getRepository]
+        arguments:
+            - Core\Entity\User
+
+    encoder.password:
+        class: Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder
+        arguments:
+            - 12

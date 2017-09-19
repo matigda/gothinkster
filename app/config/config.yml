@@ -57,8 +57,21 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                  product:
+                    type:      yml
+                    dir:       '%kernel.root_dir%/../src/AppBundle/Resources/config/doctrine'
+                    prefix:    Core\Entity
+                    is_bundle: false
+
+lexik_jwt_authentication:
+    private_key_path: '%jwt_private_key_path%'
+    public_key_path:  '%jwt_public_key_path%'
+    pass_phrase:      '%jwt_key_pass_phrase%'
+    token_ttl:        '%jwt_token_ttl%'
 
 # Swiftmailer Configuration
 swiftmailer:

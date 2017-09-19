@@ -9,3 +9,10 @@ services:
     expose:
       - "9000"
       - "9090"
+  mysql:
+    image: mysql
+    container_name: gothinkster_mysql
+    ports:
+      - "8013:3306"
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true

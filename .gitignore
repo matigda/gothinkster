@@ -5,6 +5,7 @@
 .idea/
 /var/*
 !/var/cache
+!/var/jwt
 /var/cache/*
 !var/cache/.gitkeep
 !/var/logs

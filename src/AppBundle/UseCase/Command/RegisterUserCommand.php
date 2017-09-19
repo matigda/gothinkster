@@ -64,7 +64,7 @@ class RegisterUserCommand
         return $this->bio;
     }
 
-    public function hasBio():bool
+    public function hasBio(): bool
     {
         return $this->bio !== null;
     }
@@ -74,7 +74,7 @@ class RegisterUserCommand
         return $this->image;
     }
 
-    public function hasImage():bool
+    public function hasImage(): bool
     {
         return $this->image !== null;
     }
