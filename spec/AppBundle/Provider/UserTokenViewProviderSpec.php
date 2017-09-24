@@ -21,10 +21,12 @@ class UserTokenViewProviderSpec extends ObjectBehavior
         $this->shouldHaveType(UserTokenViewProvider::class);
     }
 
-    function it_returns_user_token_view_based_on_given_user(User $user, JWTEncoderInterface $JWTEncoder)
+    function it_returns_user_token_view_based_on_given_user(JWTEncoderInterface $JWTEncoder)
     {
         $token = 'some-token';
-        $JWTEncoder->encode()->willReturn($token);
+        $user = new User('id', 'username', 'email@email.pl', 'password');
+
+        $JWTEncoder->encode(['username' => $user->getEmail()])->willReturn($token);
 
         $this->provide($user)->shouldBeLike(new UserTokenView(
             $user->getEmail(),

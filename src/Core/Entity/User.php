@@ -73,12 +73,12 @@ class User
         return $this->username;
     }
 
-    public function getBio()
+    public function getBio(): ?string
     {
         return $this->bio;
     }
 
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
     }

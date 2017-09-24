@@ -4,17 +4,20 @@ declare(strict_types = 1);
 
 namespace AppBundle\Controller;
 
+use AppBundle\ReadModel\View\UserProfileView;
 use Core\Entity\User;
+use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use FOS\RestBundle\Controller\Annotations\Post;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 
-class SecurityController extends Controller
+class SecurityController extends FOSRestController
 {
     /**
-     * @Route("/api/users/login", name="login")
+     * @Post("/users/login")
      */
     public function loginAction(Request $request)
     {
@@ -33,12 +36,10 @@ class SecurityController extends Controller
             throw new BadCredentialsException();
         }
 
-        $token = $this->get('lexik_jwt_authentication.encoder')->encode([
-            'username' => $userData['email']
-        ]);
+        $userTokenView = $this->get('provider.user_token_view')->provide($user);
 
-        dump($this->get('lexik_jwt_authentication.encoder')->decode($token));
-
-//        dump($token);;
+        return [
+            'user' => $userTokenView
+        ];
     }
 }

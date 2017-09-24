@@ -97,7 +97,10 @@ class FeatureContext implements Context
      */
     public function responseBodyIsSameAsIn($fileName)
     {
-        Assert::assertEquals(file_get_contents(__DIR__ . '/../data/' . $fileName), $this->response->getContent());
+        Assert::assertEquals(
+            json_decode(file_get_contents(__DIR__ . '/../data/' . $fileName), true),
+            json_decode($this->response->getContent(), true)
+        );
     }
 
     /**

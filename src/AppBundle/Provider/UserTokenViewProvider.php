@@ -2,7 +2,7 @@
 
 namespace AppBundle\Provider;
 
-use AppBundle\ReadModel\View\UserProfileView;
+use AppBundle\ReadModel\View\UserTokenView;
 use Core\Entity\User;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 
@@ -18,7 +18,12 @@ class UserTokenViewProvider
         $this->JWTEncoder = $JWTEncoder;
     }
 
-    public function provide(User $user): UserProfileView
+    public function provide(User $user): UserTokenView
     {
+        $token = $this->JWTEncoder->encode([
+            'username' => $user->getEmail()
+        ]);
+
+        return new UserTokenView($user->getEmail(), $token, $user->getUsername(), $user->getBio(), $user->getImage());
     }
 }

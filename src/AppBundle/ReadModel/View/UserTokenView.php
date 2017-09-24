@@ -39,4 +39,35 @@ class UserTokenView
         $this->bio = $bio;
         $this->image = $image;
     }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 }

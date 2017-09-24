@@ -1,0 +1,3 @@
+services:
+    lexik_jwt_authentication.encoder:
+        class: AppBundle\JWT\InMemoryEncoder

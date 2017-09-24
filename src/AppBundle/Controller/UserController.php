@@ -3,8 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\UseCase\Command\RegisterUserCommand;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,8 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends Controller
 {
     /**
-     * @Route("/api/users", name="user_register")
-     * @Method("POST")
+     * @Post("/users")
+     * @Rest\View(statusCode=201)
      */
     public function registerAction(Request $request)
     {
@@ -29,11 +30,15 @@ class UserController extends Controller
             )
         );
 
-        return new Response('', 201);
+        $userTokenView = $this->get('provider.user_token_view')->provide($user);
+
+        return [
+            'user' => $userTokenView
+        ];
     }
 
     /**
-     * @Route("/api/profiles/{username}", name="user_profile")
+     * @Get("/profiles/{username}")
      */
     public function profileAction()
     {
