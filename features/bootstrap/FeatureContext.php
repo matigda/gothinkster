@@ -44,7 +44,7 @@ class FeatureContext implements Context
     {
         $em = $this->container->get('doctrine.orm.entity_manager');
         $this->schemaTool = new SchemaTool($em);
-        $this->schemaTool->createSchema($em->getMetadataFactory()->getAllMetadata());
+//        $this->schemaTool->createSchema($em->getMetadataFactory()->getAllMetadata());
     }
 
     /**

@@ -38,6 +38,14 @@ class UserController extends Controller
     }
 
     /**
+     * @Get("/user")
+     */
+    public function getCurrentUserAction()
+    {
+
+    }
+
+    /**
      * @Get("/profiles/{username}")
      */
     public function profileAction()

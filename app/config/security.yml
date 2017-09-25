@@ -1,7 +1,9 @@
 security:
     providers:
-        in_memory:
-            memory: ~
+        entity_provider:
+            entity:
+                class: Core\Entity\User
+                property: email
 
     firewalls:
         login:
