@@ -54,18 +54,10 @@ doctrine:
         #   2. Uncomment database_path in parameters.yml.dist
         #   3. Uncomment next line:
         #path: '%database_path%'
-
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
-        entity_managers:
-            default:
-                connection: default
-                mappings:
-                  product:
-                    type:      yml
-                    dir:       '%kernel.root_dir%/../src/AppBundle/Resources/config/doctrine'
-                    prefix:    Core\Entity
-                    is_bundle: false
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
 
 lexik_jwt_authentication:
     private_key_path: '%jwt_private_key_path%'

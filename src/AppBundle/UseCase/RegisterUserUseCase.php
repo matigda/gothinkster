@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace AppBundle\UseCase;
 
-use Core\Entity\User;
+use AppBundle\Entity\User;
 use Core\Repository\UserRepositoryInterface;
 use AppBundle\UseCase\Command\RegisterUserCommand;
 use Ramsey\Uuid\Uuid;

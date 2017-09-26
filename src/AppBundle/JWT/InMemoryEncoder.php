@@ -20,6 +20,8 @@ class InMemoryEncoder implements JWTEncoderInterface
      */
     public function decode($token)
     {
-        // TODO: Implement decode() method.
+        return [
+          'username' => $token
+        ];
     }
 }

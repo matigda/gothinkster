@@ -13,6 +13,7 @@ Feature: Testing user endpoints
     And response body is same as in "user.json"
 
   Scenario: Getting authenticated user
+    Given user from "registration.json" exists
 #    Given some user is authenticated
     When I send "GET" request on "/api/user"
     Then I get "200" http status

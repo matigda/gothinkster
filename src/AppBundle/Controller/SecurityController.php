@@ -4,12 +4,9 @@ declare(strict_types = 1);
 
 namespace AppBundle\Controller;
 
-use AppBundle\ReadModel\View\UserProfileView;
-use Core\Entity\User;
+use AppBundle\Entity\User;
 use FOS\RestBundle\Controller\FOSRestController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\Post;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;

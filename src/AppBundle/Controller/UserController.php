@@ -25,8 +25,8 @@ class UserController extends Controller
                 $userData['username'],
                 $userData['email'],
                 $userData['password'],
-                $userData['bio'],
-                $userData['image']
+                $userData['bio'] ?? null,
+                $userData['image'] ?? null
             )
         );
 
@@ -42,7 +42,7 @@ class UserController extends Controller
      */
     public function getCurrentUserAction()
     {
-
+        return [];
     }
 
     /**

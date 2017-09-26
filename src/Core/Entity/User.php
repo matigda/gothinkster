@@ -10,32 +10,32 @@ class User
     /**
      * @var string
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $username;
+    protected $username;
 
     /**
      * @var string
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string
      */
-    private $password;
+    protected $password;
 
     /**
      * @var string|null
      */
-    private $bio;
+    protected $bio;
 
     /**
      * @var string|null
      */
-    private $image;
+    protected $image;
 
     public function __construct(string $id, string $username, string $email, string $password)
     {

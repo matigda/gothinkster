@@ -9,7 +9,7 @@ services:
         class: AppBundle\Repository\UserRepository
         factory: ['@doctrine.orm.entity_manager', getRepository]
         arguments:
-            - Core\Entity\User
+            - AppBundle\Entity\User
 
     encoder.password:
         class: Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder

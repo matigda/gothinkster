@@ -1,4 +1,4 @@
-Core\Entity\User:
+AppBundle\Entity\User:
     type: entity
     repositoryClass: AppBundle\Repository\UserRepository
     table: user

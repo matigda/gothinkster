@@ -2,7 +2,7 @@ security:
     providers:
         entity_provider:
             entity:
-                class: Core\Entity\User
+                class: AppBundle:User
                 property: email
 
     firewalls:
@@ -10,17 +10,12 @@ security:
             pattern:  ^/api/users/login
             stateless: true
             anonymous: true
-            form_login:
-                check_path:               /api/users/login_check
-                login_path:               /api/users/login
-                success_handler:          lexik_jwt_authentication.handler.authentication_success
-                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
-                require_previous_session: false
 
         api:
             pattern:   ^/api
             stateless: true
             anonymous: true
+            provider: entity_provider
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator

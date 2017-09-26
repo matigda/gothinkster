@@ -1,7 +1,7 @@
 <?php
 
 use AppBundle\UseCase\Command\RegisterUserCommand;
-use Core\Entity\User;
+use AppBundle\Entity\User;
 use Doctrine\ORM\Tools\SchemaTool;
 use PHPUnit\Framework\Assert;
 use Behat\Behat\Context\Context;
@@ -52,7 +52,7 @@ class FeatureContext implements Context
      */
     public function afterScenario()
     {
-        $this->schemaTool->dropDatabase();
+//        $this->schemaTool->dropDatabase();
     }
 
     /**
@@ -110,7 +110,10 @@ class FeatureContext implements Context
     {
         $kernel = $this->container->get('kernel');
 
-        $this->response = $kernel->handle(Request::create($url, $method));
+        $request = Request::create($url, $method);
+        $request->headers->set('Authorization', 'Bearer jake@jake.jake');
+
+        $this->response = $kernel->handle($request);
     }
 
     /**
