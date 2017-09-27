@@ -8,4 +8,6 @@ use Core\Entity\User;
 interface UserRepositoryInterface
 {
     public function add(User $user);
+
+    public function update(User $user);
 }

@@ -9,6 +9,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class User extends BaseUser implements UserInterface
 {
+    private $mappedFollowers;
+
     /**
      * {@inheritdoc}
      */
@@ -30,5 +32,30 @@ class User extends BaseUser implements UserInterface
      */
     public function eraseCredentials()
     {
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
     }
 }

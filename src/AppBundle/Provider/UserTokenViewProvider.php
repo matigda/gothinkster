@@ -3,7 +3,7 @@
 namespace AppBundle\Provider;
 
 use AppBundle\ReadModel\View\UserTokenView;
-use Core\Entity\User;
+use AppBundle\Entity\User;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 
 class UserTokenViewProvider

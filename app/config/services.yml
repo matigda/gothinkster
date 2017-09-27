@@ -5,6 +5,16 @@ services:
             - '@repository.user'
             - '@encoder.password'
 
+    use_case.get_user_profile:
+        class: AppBundle\UseCase\GetUserProfileUseCase
+        arguments:
+            - '@repository.user'
+
+    use_case.user_follow_user:
+        class: AppBundle\UseCase\MakeUserFollowUserUseCase
+        arguments:
+            - '@repository.user'
+
     repository.user:
         class: AppBundle\Repository\UserRepository
         factory: ['@doctrine.orm.entity_manager', getRepository]

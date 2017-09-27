@@ -109,12 +109,22 @@ class FeatureContext implements Context
     public function iUseMethodOn($method, $url)
     {
         $kernel = $this->container->get('kernel');
+        $this->response = $kernel->handle(Request::create($url, $method));
+    }
+
+    /**
+     * @When I send :method request on :url authenticated as :email
+     */
+    public function iSendRequestOnAuthenticatedAs($method, $url, $email)
+    {
+        $kernel = $this->container->get('kernel');
 
         $request = Request::create($url, $method);
-        $request->headers->set('Authorization', 'Bearer jake@jake.jake');
+        $request->headers->set('Authorization', 'Bearer ' . $email);
 
         $this->response = $kernel->handle($request);
     }
+
 
     /**
      * @Then user is added to database

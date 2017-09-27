@@ -14,8 +14,7 @@ Feature: Testing user endpoints
 
   Scenario: Getting authenticated user
     Given user from "registration.json" exists
-#    Given some user is authenticated
-    When I send "GET" request on "/api/user"
+    When I send "GET" request on "/api/user" authenticated as "jake@jake.jake"
     Then I get "200" http status
     And response body is same as in "user.json"
 
@@ -24,13 +23,16 @@ Feature: Testing user endpoints
 #    @TODO
 
   Scenario: Getting user profile
-    When I send "GET" request on "/api/profiles/jake"
+    Given user from "registration.json" exists
+    And user from "second_user.json" exists
+    When I send "GET" request on "/api/profiles/matthew" authenticated as "jake@jake.jake"
     Then I get "200" http status
     And response body is same as in "profile.json"
 
   Scenario: Following user
-#    Given some user is authenticated
-    When I send "POST" request on "/api/profiles/jake/follow"
+#    Given user from "registration.json" exists
+#    And user from "second_user.json" exists
+    When I send "POST" request on "/api/profiles/jake/follow" authenticated as "math@math.meth"
     Then I get "200" http status
     And response body is same as in "profile.json"
 
