@@ -9,8 +9,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class User extends BaseUser implements UserInterface
 {
-    private $mappedFollowers;
-
     /**
      * {@inheritdoc}
      */

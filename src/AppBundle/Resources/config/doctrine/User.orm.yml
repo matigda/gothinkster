@@ -24,15 +24,5 @@ AppBundle\Entity\User:
             type: string
             length: 100
             nullable: true
-
-    manyToMany:
-        mappedFollowers:
-            targetEntity: AppBundle\Entity\User
-            joinTable:
-                name: users_followers
-                joinColumns:
-                    user_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    follower_id:
-                        referencedColumnName: id
+        followers:
+            type: followers

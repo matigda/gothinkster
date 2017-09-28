@@ -30,8 +30,8 @@ Feature: Testing user endpoints
     And response body is same as in "profile.json"
 
   Scenario: Following user
-#    Given user from "registration.json" exists
-#    And user from "second_user.json" exists
+    Given user from "registration.json" exists
+    And user from "second_user.json" exists
     When I send "POST" request on "/api/profiles/jake/follow" authenticated as "math@math.meth"
     Then I get "200" http status
     And response body is same as in "profile.json"
