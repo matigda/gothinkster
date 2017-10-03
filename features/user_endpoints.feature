@@ -25,7 +25,7 @@ Feature: Testing user endpoints
   Scenario: Getting user profile
     Given user from "registration.json" exists
     And user from "second_user.json" exists
-    When I send "GET" request on "/api/profiles/matthew" authenticated as "jake@jake.jake"
+    When I send "GET" request on "/api/profiles/jake" authenticated as "math@math.meth"
     Then I get "200" http status
     And response body is same as in "profile.json"
 
@@ -34,10 +34,12 @@ Feature: Testing user endpoints
     And user from "second_user.json" exists
     When I send "POST" request on "/api/profiles/jake/follow" authenticated as "math@math.meth"
     Then I get "200" http status
-    And response body is same as in "profile.json"
+    And response body is same as in "profile_followed.json"
 
   Scenario: Unfollowing user
-#    Given some user is authenticated
+    Given user from "registration.json" exists
+    And user from "second_user.json" exists
+    When I send "POST" request on "/api/profiles/jake/follow" authenticated as "math@math.meth"
     When I send "DELETE" request on "/api/profiles/jake/follow"
     Then I get "200" http status
     And response body is same as in "profile.json"

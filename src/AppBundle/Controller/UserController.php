@@ -15,6 +15,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
+    use HasTokenViewControllerTrait;
+
     /**
      * @Post("/users")
      * @Rest\View(statusCode=201)
@@ -33,11 +35,7 @@ class UserController extends Controller
             )
         );
 
-        $userTokenView = $this->get('provider.user_token_view')->provide($user);
-
-        return [
-            'user' => $userTokenView
-        ];
+        return $this->provideUserTokenView($user);
     }
 
     /**
@@ -45,11 +43,7 @@ class UserController extends Controller
      */
     public function getCurrentUserAction()
     {
-        $userTokenView = $this->get('provider.user_token_view')->provide($this->getUser());
-
-        return [
-            'user' => $userTokenView
-        ];
+        return $this->provideUserTokenView($this->getUser());
     }
 
     /**
@@ -57,7 +51,11 @@ class UserController extends Controller
      */
     public function profileAction(string $username)
     {
-        $user = $this->get('use_case.get_user_profile')->execute(new GetUserProfileCommand($username));
+        return [
+            'profile' => $this->get('use_case.get_user_profile')->execute(
+                new GetUserProfileCommand($username, $this->getUser())
+            )
+        ];
     }
 
     /**
@@ -66,8 +64,12 @@ class UserController extends Controller
     public function followUserAction(string $username)
     {
         $userToFollow = $this->getDoctrine()->getRepository(User::class)->findOneBy(compact('username'));
-dump($userToFollow);die;
         $this->get('use_case.user_follow_user')->execute(new UserFollowUserCommand($this->getUser(), $userToFollow));
-        $this->get('use_case.user_follow_user')->execute(new UserFollowUserCommand($this->getUser(), $userToFollow));
+
+        return [
+            'profile' => $this->get('use_case.get_user_profile')->execute(
+                new GetUserProfileCommand($username, $this->getUser())
+            )
+        ];
     }
 }

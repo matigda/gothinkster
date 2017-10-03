@@ -22,7 +22,7 @@ class GetUserProfileUseCase
 
     public function execute(GetUserProfileCommand $command): UserProfileView
     {
-        return $this->userProfileQuery->findByUsernameWithFollowingForGivenUser(
+        return $this->userProfileQuery->findByUsernameForGivenUser(
             $command->getUsername(),
             $command->getUserToCheckFollow()
         );

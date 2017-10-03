@@ -26,11 +26,31 @@ class UserProfileView
      */
     private $following;
 
-    public function __construct(string $username, string $bio, string $image, bool $following)
+    public function __construct(string $username, string $bio = null, string $image = null, bool $following)
     {
         $this->username = $username;
         $this->bio = $bio;
         $this->image = $image;
         $this->following = $following;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function isFollowing()
+    {
+        return $this->following;
     }
 }

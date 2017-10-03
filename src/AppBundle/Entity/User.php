@@ -52,6 +52,11 @@ class User extends BaseUser implements UserInterface
         return $this->bio;
     }
 
+    public function getFollowers()
+    {
+        return $this->followers;
+    }
+
     public function getImage(): ?string
     {
         return $this->image;

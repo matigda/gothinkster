@@ -13,6 +13,8 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 
 class SecurityController extends FOSRestController
 {
+    use HasTokenViewControllerTrait;
+
     /**
      * @Post("/users/login")
      */
@@ -33,10 +35,6 @@ class SecurityController extends FOSRestController
             throw new BadCredentialsException();
         }
 
-        $userTokenView = $this->get('provider.user_token_view')->provide($user);
-
-        return [
-            'user' => $userTokenView
-        ];
+        return $this->provideUserTokenView($user);
     }
 }

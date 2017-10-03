@@ -4,7 +4,7 @@ namespace spec\AppBundle\Provider;
 
 use AppBundle\Provider\UserTokenViewProvider;
 use AppBundle\ReadModel\View\UserTokenView;
-use Core\Entity\User;
+use AppBundle\Entity\User;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

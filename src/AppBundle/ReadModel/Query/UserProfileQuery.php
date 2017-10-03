@@ -9,5 +9,5 @@ use AppBundle\ReadModel\View\UserProfileView;
 
 interface UserProfileQuery
 {
-    public function findByUsernameWithFollowingForGivenUser(string $username, User $user): UserProfileView;
+    public function findByUsernameForGivenUser(string $username, User $user): UserProfileView;
 }

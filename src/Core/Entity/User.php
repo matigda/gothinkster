@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace Core\Entity;
 
 use Core\Exception\InvalidEmailException;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class User
 {
@@ -40,7 +41,7 @@ class User
     /**
      * @var User[]
      */
-    protected $followers = [];
+    protected $followers;
 
     public function __construct(string $id, string $username, string $email, string $password)
     {
@@ -51,13 +52,27 @@ class User
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
+
+        $this->followers = new ArrayCollection();
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function follow(User $user)
     {
-        if (!in_array($user, $this->followers)) {
-            $this->followers[] = $user;
+        if (!$user->followers->exists(function ($key, User $existingFollower) use ($user) {
+            return $user->email == $existingFollower->email;
+        })) {
+            $user->followers[] = $this;
         }
+    }
+
+    public function getFollowers()
+    {
+        return $this->followers;
     }
 
     public function setBio(string $bio)

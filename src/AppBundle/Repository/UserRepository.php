@@ -30,11 +30,19 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
         $this->_em->flush();
     }
 
-    public function findByUsernameWithFollowingForGivenUser(string $username, User $user): UserProfileView
+    public function findByUsernameForGivenUser(string $username, User $user): UserProfileView
     {
-        $statement = $this->_em->getConnection()->prepare('SELECT * FROM user WHERE username = ?');
+        $statement = $this->_em->getConnection()->prepare(
+            '
+              SELECT * FROM user
+              LEFT JOIN users_followers uf
+              ON uf.follower_id = ?
+              WHERE username = ?
+            '
+        );
 
-        $statement->bindValue(1, $username);
+        $statement->bindValue(1, $user->getId());
+        $statement->bindValue(2, $username);
         $statement->execute();
 
         $results = $statement->fetchAll();
@@ -43,6 +51,8 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
             throw new \Exception();
         }
 
-        return new UserProfileView();
+        $result = $results[0];
+
+        return new UserProfileView($result['username'], $result['bio'], $result['image'], (bool) $result['follower_id']);
     }
 }
