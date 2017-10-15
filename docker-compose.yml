@@ -1,10 +1,10 @@
 version: '2'
 services:
   php:
-    build: ./php
+    build: docker/php
     container_name: gothinkster_php
     volumes:
-      - ../:/var/www/gothinkster
+      - ./:/var/www/gothinkster
     working_dir: /var/www/gothinkster
     expose:
       - "9000"
