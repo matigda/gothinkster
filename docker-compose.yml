@@ -8,11 +8,13 @@ services:
     working_dir: /var/www/gothinkster
     expose:
       - "9000"
-      - "9090"
-  mysql:
+  database:
     image: mysql
     container_name: gothinkster_mysql
     ports:
       - "8013:3306"
     environment:
+      - MYSQL_DATABASE=gothinkster
+      - MYSQL_USER=gothinkster
+      - MYSQL_PASSWORD=gothinkster
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
