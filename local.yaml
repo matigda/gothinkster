@@ -1,26 +1,46 @@
 ---
 - hosts: all
-
-  vars:
-    packages:
-      - php
-      - composer
-      - docker
-      - docker-compose
+  become: yes
 
   tasks:
-    - pacman:
+    - name: Install required packages.
+      pacman:
         name: "{{ item }}"
         state: present
-      with_items: "{{ packages }}"
-      when: ansible_distribution == "Manjaro Linux" or ansible_distribution == "Arch Linux"
+      with_items:
+        - php
+        - php-intl
+        - composer
+        - docker
+        - docker-compose
 
-    - apt:
-        name: "{{ item }}"
+    - name: Configure local php.
+      lineinfile:
+        path: /etc/php/php.ini
+        line: "extension={{ item }}"
+        regexp: "extension={{ item }}$"
         state: present
-      with_items: "{{ packages }}"
-      when: ansible_distribution == "Debian" or ansible_distribution == "Ubuntu"
+        insertafter: '^;extension='
+      with_items:
+        - 'intl.so'
+        - 'iconv.so'
+        - 'curl.so'
+        - 'pdo_mysql.so'
 
-    - service:
+    - name: Ensure docker is started.
+      service:
         name: docker
         state: started
+
+    - name: Update /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        line: '127.0.0.1  realworld.dev'
+        state: present
+
+    - name: Build application.
+      command: make build
+      become: no
+
+    - name: Start containers.
+      command: docker-compose up -d

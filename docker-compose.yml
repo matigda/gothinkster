@@ -1,20 +1,32 @@
-version: '2'
+version: '3'
 services:
-  php:
-    build: docker/php
-    container_name: gothinkster_php
+  nginx:
+    build: ./docker/nginx
     volumes:
-      - ./:/var/www/gothinkster
-    working_dir: /var/www/gothinkster
-    expose:
-      - "9000"
-  database:
-    image: mysql
-    container_name: gothinkster_mysql
+      - ./:/var/www/realworld/
     ports:
-      - "8013:3306"
+      - 80:80
+    restart: always
+    depends_on:
+      - php-fpm
+  php-fpm:
+    build: ./docker/php-fpm
+    volumes:
+      - ./:/var/www/realworld/
+    expose:
+      - 9000
+    ports:
+      - 9000:9000
+    links:
+      - mysql:realworld.dev
+  mysql:
+    image: mysql
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
     environment:
-      - MYSQL_DATABASE=gothinkster
-      - MYSQL_USER=gothinkster
-      - MYSQL_PASSWORD=gothinkster
+      - MYSQL_DATABASE=realworld
+      - MYSQL_USER=realworld
+      - MYSQL_PASSWORD=realworld
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
