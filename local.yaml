@@ -13,13 +13,11 @@
         name: "{{ item }}"
         state: present
       with_items: "{{ packages }}"
-      when: ansible_distribution == "Manjaro Linux" or ansible_distribution == "Arch Linux"
 
-    - apt:
-        name: "{{ item }}"
+    - pacman:
+        name: mysql-clients
         state: present
-      with_items: "{{ packages }}"
-      when: ansible_distribution == "Debian" or ansible_distribution == "Ubuntu"
+      when: ansible_distribution == "Manjaro Linux" or ansible_distribution == "Arch Linux"
 
     - service:
         name: docker
