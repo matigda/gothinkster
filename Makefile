@@ -10,6 +10,3 @@ build: ## Build project
 test: ## Run tests
 	bin/phpspec run
 	bin/behat
-
-serve: ## Serve project
-	sudo docker-compose up -d
