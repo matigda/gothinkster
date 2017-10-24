@@ -8,7 +8,7 @@ build: ## Build project
 	composer install
 
 test: ## Run tests
-	bin/phpspec run
+#	bin/phpspec run
 	bin/behat
 
 run_local:  ## Run local environment

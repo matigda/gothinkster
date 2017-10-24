@@ -1,33 +1,22 @@
-# Project language
-language: php
-
-# Allows use container-based infrastructure
 sudo: false
+language: php
+php:
+  - "7.1"
+  - "7.2"
 
-# Cache composer packages so "composer install" is faster
-cache:
-  directories:
-    - $HOME/.composer/cache/files
-
-matrix:
-  fast_finish: true
-  include:
-    - php: 7.1.0
-
-# Define an environment variable
 env:
-  - SYMFONY_VERSION="3.0.*" DB=mysql
+  - DB=sqlite
+  - DB=mysql
 
-# Update composer
 before-install:
   - composer self-update
 
-# Install composer dependencies,
-# Create database, schema and fixtures
 install:
-  - cp app/config/parameters.yml.travis app/config/parameters.yml
   - make build
 
-# Run script
 script:
   - make test
+
+cache:
+  directories:
+    - $HOME/.composer/cache
