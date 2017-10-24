@@ -1,33 +1,25 @@
-# Project language
-language: php
-
-# Allows use container-based infrastructure
 sudo: false
+language: php
+php:
+  - "7.1"
+  - "7.2"
 
-# Cache composer packages so "composer install" is faster
-cache:
-  directories:
-    - $HOME/.composer/cache/files
-
-matrix:
-  fast_finish: true
-  include:
-    - php: 7.1.0
-
-# Define an environment variable
 env:
-  - SYMFONY_VERSION="3.0.*" DB=mysql
+  global:
+    - SYMFONY_ENV=test
+  matrix:
+    - DB=sqlite
 
-# Update composer
 before-install:
+  - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
   - composer self-update
 
-# Install composer dependencies,
-# Create database, schema and fixtures
 install:
-  - composer install
-  - cp app/config/parameters.yml.dist app/config/parameters.yml
+  - make build
 
-# Run script
 script:
-  - bin/behat
+  - make test
+
+cache:
+  directories:
+    - $HOME/.composer/cache
