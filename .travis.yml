@@ -6,10 +6,10 @@ php:
 
 env:
   - DB=sqlite
-  - DB=mysql
 
 before-install:
   - composer self-update
+  -
 
 install:
   - make build
