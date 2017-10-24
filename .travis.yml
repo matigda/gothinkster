@@ -2,14 +2,13 @@ sudo: false
 language: php
 php:
   - "7.1"
-  - "7.2"
 
 env:
   - DB=sqlite
 
 before-install:
+  - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
   - composer self-update
-  -
 
 install:
   - make build
