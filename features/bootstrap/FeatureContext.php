@@ -67,8 +67,8 @@ class FeatureContext implements Context
                 $userData['username'],
                 $userData['email'],
                 $userData['password'],
-                $userData['bio'],
-                $userData['image']
+                $userData['bio'] ?? null,
+                $userData['image'] ?? null
             )
         );
     }

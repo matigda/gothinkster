@@ -10,6 +10,7 @@
       with_items:
         - php
         - php-intl
+        - php-sqlite
         - composer
         - docker
         - docker-compose
@@ -26,6 +27,7 @@
         - 'iconv.so'
         - 'curl.so'
         - 'pdo_mysql.so'
+        - 'pdo_sqlite.so'
 
     - name: Ensure docker is started.
       service:
@@ -37,10 +39,3 @@
         path: /etc/hosts
         line: '127.0.0.1  realworld.dev'
         state: present
-
-    - name: Build application.
-      command: make build
-      become: no
-
-    - name: Start containers.
-      command: docker-compose up -d

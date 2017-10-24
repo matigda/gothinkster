@@ -11,5 +11,5 @@ test: ## Run tests
 	bin/phpspec run
 	bin/behat
 
-run_local: ## Run local environment
+run_local:  ## Run local environment
 	sudo docker-compose up -d
