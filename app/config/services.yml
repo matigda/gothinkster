@@ -1,6 +1,6 @@
 services:
     use_case.register_user:
-        class: AppBundle\UseCase\RegisterUserUseCase
+        class: AppBundle\UseCase\RegisterUser
         arguments:
             - '@repository.user'
             - '@encoder.password'
@@ -11,12 +11,12 @@ services:
             - '@repository.user'
 
     use_case.user_follow_user:
-        class: AppBundle\UseCase\MakeUserFollowUserUseCase
+        class: AppBundle\UseCase\FollowUser
         arguments:
             - '@repository.user'
 
     repository.user:
-        class: AppBundle\Repository\UserRepository
+        class: AppBundle\Repository\DoctrineUsers
         factory: ['@doctrine.orm.entity_manager', getRepository]
         arguments:
             - AppBundle\Entity\User

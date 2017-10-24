@@ -3,26 +3,26 @@
 namespace spec\AppBundle\UseCase;
 
 use AppBundle\Entity\User;
-use AppBundle\UseCase\Command\RegisterUserCommand;
-use AppBundle\UseCase\RegisterUserUseCase;
-use Core\Repository\UserRepositoryInterface;
+use AppBundle\UseCase\RegisterUserCommand;
+use AppBundle\UseCase\RegisterUser;
+use Core\Repository\UserRepository;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
-class RegisterUserUseCaseSpec extends ObjectBehavior
+class RegisterUserSpec extends ObjectBehavior
 {
-    function let(UserRepositoryInterface $userRepository, PasswordEncoderInterface $passwordEncoder)
+    function let(UserRepository $userRepository, PasswordEncoderInterface $passwordEncoder)
     {
         $this->beConstructedWith($userRepository, $passwordEncoder);
     }
 
     function it_is_initializable()
     {
-        $this->shouldHaveType(RegisterUserUseCase::class);
+        $this->shouldHaveType(RegisterUser::class);
     }
 
-    function it_creates_user_and_adds_to_repository(UserRepositoryInterface $userRepository, PasswordEncoderInterface $passwordEncoder)
+    function it_creates_user_and_adds_to_repository(UserRepository $userRepository, PasswordEncoderInterface $passwordEncoder)
     {
         $passwordEncoder->encodePassword($password = 'pass', null)->willReturn($encodedPass = 'encodedpass');
 

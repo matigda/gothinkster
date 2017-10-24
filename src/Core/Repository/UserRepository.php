@@ -5,9 +5,8 @@ namespace Core\Repository;
 
 use Core\Entity\User;
 
-interface UserRepositoryInterface
+interface UserRepository
 {
     public function add(User $user);
-
     public function update(User $user);
 }

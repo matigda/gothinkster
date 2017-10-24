@@ -2,9 +2,7 @@
 
 namespace AppBundle\UseCase;
 
-use AppBundle\UseCase\Command\UnfollowUserCommand;
-
-class UnfollowUser
+final class UnfollowUser
 {
     public function execute(UnfollowUserCommand $command): void
     {

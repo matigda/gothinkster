@@ -7,10 +7,10 @@ namespace AppBundle\Repository;
 use AppBundle\ReadModel\Query\UserProfileQuery;
 use AppBundle\ReadModel\View\UserProfileView;
 use Core\Entity\User;
-use Core\Repository\UserRepositoryInterface;
+use Core\Repository\UserRepository;
 use Doctrine\ORM\EntityRepository;
 
-class UserRepository extends EntityRepository implements UserRepositoryInterface, UserProfileQuery
+class DoctrineUsers extends EntityRepository implements UserRepository, UserProfileQuery
 {
     /**
      * {@inheritdoc}

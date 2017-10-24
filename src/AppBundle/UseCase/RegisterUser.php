@@ -4,33 +4,25 @@ declare(strict_types = 1);
 namespace AppBundle\UseCase;
 
 use AppBundle\Entity\User;
-use Core\Repository\UserRepositoryInterface;
-use AppBundle\UseCase\Command\RegisterUserCommand;
+use Core\Repository\UserRepository;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
-class RegisterUserUseCase
+final class RegisterUser
 {
-    /**
-     * @var UserRepositoryInterface
-     */
-    private $userRepository;
-
-    /**
-     * @var PasswordEncoderInterface
-     */
+    private $users;
     private $passwordEncoder;
 
-    public function __construct(UserRepositoryInterface $userRepository, PasswordEncoderInterface $passwordEncoder)
+    public function __construct(UserRepository $users, PasswordEncoderInterface $passwordEncoder)
     {
-        $this->userRepository = $userRepository;
+        $this->users = $users;
         $this->passwordEncoder = $passwordEncoder;
     }
 
     public function execute(RegisterUserCommand $command): User
     {
         $user = new User(
-            (string) Uuid::uuid4(),
+            Uuid::uuid4()->toString(),
             $command->getUsername(),
             $command->getEmail(),
             $this->passwordEncoder->encodePassword($command->getPassword(), null)
@@ -44,7 +36,7 @@ class RegisterUserUseCase
             $user->setImage($command->getImage());
         }
 
-        $this->userRepository->add($user);
+        $this->users->add($user);
 
         return $user;
     }
