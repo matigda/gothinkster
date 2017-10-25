@@ -2,13 +2,13 @@
 
 namespace AppBundle\UseCase;
 
-use Core\Repository\UserRepository;
+use Core\Repository\UserRepositoryInterface;
 
 final class UnfollowUser
 {
     private $users;
 
-    public function __construct(UserRepository $users)
+    public function __construct(UserRepositoryInterface $users)
     {
         $this->users = $users;
     }
@@ -18,6 +18,6 @@ final class UnfollowUser
         $follower = $command->getFollower();
         $follower->unfollow($command->getFollowed());
 
-        $this->users->update($follower);
+        $this->users->save();
     }
 }

@@ -4,13 +4,13 @@ declare(strict_types = 1);
 
 namespace AppBundle\UseCase;
 
-use Core\Repository\UserRepository;
+use Core\Repository\UserRepositoryInterface;
 
 final class FollowUser
 {
     private $users;
 
-    public function __construct(UserRepository $users)
+    public function __construct(UserRepositoryInterface $users)
     {
         $this->users = $users;
     }
@@ -20,6 +20,6 @@ final class FollowUser
         $follower = $command->getFollower();
         $follower->follow($command->getFollowed());
 
-        $this->users->update($follower);
+        $this->users->save();
     }
 }

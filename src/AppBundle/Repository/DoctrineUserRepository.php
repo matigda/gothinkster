@@ -7,10 +7,10 @@ namespace AppBundle\Repository;
 use AppBundle\ReadModel\Query\UserProfileQuery;
 use AppBundle\ReadModel\View\UserProfileView;
 use Core\Entity\User;
-use Core\Repository\UserRepository;
+use Core\Repository\UserRepositoryInterface;
 use Doctrine\ORM\EntityRepository;
 
-class DoctrineUsers extends EntityRepository implements UserRepository, UserProfileQuery
+class DoctrineUserRepository extends EntityRepository implements UserRepositoryInterface, UserProfileQuery
 {
     /**
      * {@inheritdoc}
@@ -24,9 +24,8 @@ class DoctrineUsers extends EntityRepository implements UserRepository, UserProf
     /**
      * {@inheritdoc}
      */
-    public function update(User $user)
+    public function save()
     {
-        $this->_em->persist($user);
         $this->_em->flush();
     }
 
