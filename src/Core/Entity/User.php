@@ -61,12 +61,21 @@ class User
         return $this->id;
     }
 
+    public function unfollow(User $user)
+    {
+        if ($user->followers->exists(function ($key, User $existingFollower) use ($user) {
+            return $user->email == $existingFollower->email;
+        })) {
+            $user->followers->remove($this);
+        }
+    }
+
     public function follow(User $user)
     {
         if (!$user->followers->exists(function ($key, User $existingFollower) use ($user) {
             return $user->email == $existingFollower->email;
         })) {
-            $user->followers[] = $this;
+            $user->followers->add($this);
         }
     }
 

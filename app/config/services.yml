@@ -15,6 +15,11 @@ services:
         arguments:
             - '@repository.user'
 
+    use_case.user_unfollow_user:
+        class: AppBundle\UseCase\UnfollowUser
+        arguments:
+            - '@repository.user'
+
     repository.user:
         class: AppBundle\Repository\DoctrineUsers
         factory: ['@doctrine.orm.entity_manager', getRepository]
