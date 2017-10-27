@@ -10,7 +10,7 @@ use Core\Entity\User;
 use Core\Repository\UserRepositoryInterface;
 use Doctrine\ORM\EntityRepository;
 
-class UserRepository extends EntityRepository implements UserRepositoryInterface, UserProfileQuery
+class DoctrineUserRepository extends EntityRepository implements UserRepositoryInterface, UserProfileQuery
 {
     /**
      * {@inheritdoc}
@@ -24,9 +24,8 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function update(User $user)
+    public function save()
     {
-        $this->_em->persist($user);
         $this->_em->flush();
     }
 

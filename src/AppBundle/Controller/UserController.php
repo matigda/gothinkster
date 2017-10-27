@@ -4,9 +4,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\UseCase\Command\GetUserProfileCommand;
-use AppBundle\UseCase\Command\RegisterUserCommand;
-use AppBundle\UseCase\Command\UserFollowUserCommand;
+use AppBundle\UseCase\RegisterUserCommand;
+use AppBundle\UseCase\FollowUserCommand;
+use AppBundle\UseCase\UnfollowUserCommand;
 use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -64,7 +66,22 @@ class UserController extends Controller
     public function followUserAction(string $username)
     {
         $userToFollow = $this->getDoctrine()->getRepository(User::class)->findOneBy(compact('username'));
-        $this->get('use_case.user_follow_user')->execute(new UserFollowUserCommand($this->getUser(), $userToFollow));
+        $this->get('use_case.user_follow_user')->execute(new FollowUserCommand($this->getUser(), $userToFollow));
+
+        return [
+            'profile' => $this->get('use_case.get_user_profile')->execute(
+                new GetUserProfileCommand($username, $this->getUser())
+            )
+        ];
+    }
+
+    /**
+     * @Delete("/profiles/{username}/follow")
+     */
+    public function unfollowUserAction(string $username)
+    {
+        $userToUnfollow = $this->getDoctrine()->getRepository(User::class)->findOneBy(compact('username'));
+        $this->get('use_case.user_unfollow_user')->execute(new UnfollowUserCommand($this->getUser(), $userToUnfollow));
 
         return [
             'profile' => $this->get('use_case.get_user_profile')->execute(

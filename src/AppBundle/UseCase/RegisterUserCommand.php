@@ -1,9 +1,9 @@
 <?php
 declare(strict_types = 1);
 
-namespace AppBundle\UseCase\Command;
+namespace AppBundle\UseCase;
 
-class RegisterUserCommand
+final class RegisterUserCommand
 {
     /**
      * @var string

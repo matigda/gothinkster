@@ -1,6 +1,6 @@
 <?php
 
-use AppBundle\UseCase\Command\RegisterUserCommand;
+use AppBundle\UseCase\RegisterUserCommand;
 use AppBundle\Entity\User;
 use Doctrine\ORM\Tools\SchemaTool;
 use PHPUnit\Framework\Assert;
@@ -12,9 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 
-/**
- * Defines application features from the specific context.
- */
 class FeatureContext implements Context
 {
     /**
