@@ -8,11 +8,11 @@ use Core\Repository\UserRepositoryInterface;
 
 final class FollowUser
 {
-    private $users;
+    private $usersRepository;
 
-    public function __construct(UserRepositoryInterface $users)
+    public function __construct(UserRepositoryInterface $usersRepository)
     {
-        $this->users = $users;
+        $this->usersRepository = $usersRepository;
     }
 
     public function execute(FollowUserCommand $command): void
@@ -20,6 +20,6 @@ final class FollowUser
         $follower = $command->getFollower();
         $follower->follow($command->getFollowed());
 
-        $this->users->save();
+        $this->usersRepository->save();
     }
 }

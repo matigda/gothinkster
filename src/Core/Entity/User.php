@@ -63,17 +63,17 @@ class User
 
     public function unfollow(User $user)
     {
-        if ($user->followers->exists(function ($key, User $existingFollower) use ($user) {
-            return $user->email == $existingFollower->email;
+        if ($user->followers->exists(function ($key, User $existingFollower) {
+            return $this->email == $existingFollower->email;
         })) {
-            $user->followers->remove($this);
+            $user->followers->removeElement($this);
         }
     }
 
     public function follow(User $user)
     {
-        if (!$user->followers->exists(function ($key, User $existingFollower) use ($user) {
-            return $user->email == $existingFollower->email;
+        if (!$user->followers->exists(function ($key, User $existingFollower) {
+            return $this->email == $existingFollower->email;
         })) {
             $user->followers->add($this);
         }
