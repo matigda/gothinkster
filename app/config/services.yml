@@ -1,9 +1,6 @@
 services:
-    use_case.register_user:
-        class: AppBundle\UseCase\RegisterUser
-        arguments:
-            - '@repository.user'
-            - '@encoder.password'
+    AppBundle\UseCase\RegisterUser:
+        autowire: true
 
     use_case.get_user_profile:
         class: AppBundle\UseCase\GetUserProfileUseCase

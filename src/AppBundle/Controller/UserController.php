@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\UseCase\Command\GetUserProfileCommand;
+use AppBundle\UseCase\RegisterUser;
 use AppBundle\UseCase\RegisterUserCommand;
 use AppBundle\UseCase\FollowUserCommand;
 use AppBundle\UseCase\UnfollowUserCommand;
@@ -27,7 +28,7 @@ class UserController extends Controller
     {
         $userData = json_decode($request->getContent(), true)['user'];
 
-        $user = $this->get('use_case.register_user')->execute(
+        $user = $this->get(RegisterUser::class)->execute(
             new RegisterUserCommand(
                 $userData['username'],
                 $userData['email'],

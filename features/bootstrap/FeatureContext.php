@@ -10,6 +10,7 @@ use Behat\Gherkin\Node\TableNode;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\UseCase\RegisterUser;
 
 
 class FeatureContext implements Context
@@ -59,7 +60,7 @@ class FeatureContext implements Context
     {
         $userData = json_decode(file_get_contents(__DIR__ . '/../data/' . $fileName), true)['user'];
 
-        $this->container->get('use_case.register_user')->execute(
+        $this->container->get(RegisterUser::class)->execute(
             new RegisterUserCommand(
                 $userData['username'],
                 $userData['email'],
