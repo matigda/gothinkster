@@ -19,7 +19,4 @@ services:
         arguments:
             - 12
 
-    provider.user_token_view:
-        class: AppBundle\Provider\UserTokenViewProvider
-        arguments:
-            - '@lexik_jwt_authentication.encoder'
+    AppBundle\Provider\UserTokenViewProvider: ~

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace AppBundle\Controller;
 
+use AppBundle\Provider\UserTokenViewProvider;
 use Core\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
@@ -13,7 +14,7 @@ trait HasTokenViewControllerTrait
 
     protected function provideUserTokenView(User $user): array
     {
-        $userTokenView = $this->container->get('provider.user_token_view')->provide($user);
+        $userTokenView = $this->container->get(UserTokenViewProvider::class)->provide($user);
 
         return [
             'user' => $userTokenView
