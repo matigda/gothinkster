@@ -1,37 +1,22 @@
 services:
-    use_case.register_user:
-        class: AppBundle\UseCase\RegisterUser
-        arguments:
-            - '@repository.user'
-            - '@encoder.password'
+    _defaults:
+        autowire: true
+        autoconfigure: true
 
-    use_case.get_user_profile:
-        class: AppBundle\UseCase\GetUserProfileUseCase
-        arguments:
-            - '@repository.user'
+    AppBundle\UseCase\RegisterUser: ~
+    AppBundle\UseCase\GetUserProfileUseCase: ~
+    AppBundle\UseCase\FollowUser: ~
+    AppBundle\UseCase\UnfollowUser: ~
 
-    use_case.user_follow_user:
-        class: AppBundle\UseCase\FollowUser
-        arguments:
-            - '@repository.user'
-
-    use_case.user_unfollow_user:
-        class: AppBundle\UseCase\UnfollowUser
-        arguments:
-            - '@repository.user'
-
-    repository.user:
-        class: AppBundle\Repository\DoctrineUserRepository
-        factory: ['@doctrine.orm.entity_manager', getRepository]
-        arguments:
-            - AppBundle\Entity\User
+    Core\Repository\UserRepositoryInterface:
+      class: AppBundle\Repository\DoctrineUserRepository
+      factory: ['@doctrine.orm.entity_manager', getRepository]
+      arguments:
+          - AppBundle\Entity\User
 
     encoder.password:
         class: Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder
         arguments:
             - 12
 
-    provider.user_token_view:
-        class: AppBundle\Provider\UserTokenViewProvider
-        arguments:
-            - '@lexik_jwt_authentication.encoder'
+    AppBundle\Provider\UserTokenViewProvider: ~

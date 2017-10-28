@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\User;
+use Core\Repository\UserRepositoryInterface;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -22,7 +22,7 @@ class SecurityController extends FOSRestController
     {
         $userData = json_decode($request->getContent(), true)['user'];
 
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email' => $userData['email']]);
+        $user = $this->get(UserRepositoryInterface::class)->findOneBy(['email' => $userData['email']]);
 
         if (!$user) {
             throw new ResourceNotFoundException();
