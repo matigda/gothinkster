@@ -15,7 +15,7 @@ before-install:
   - composer self-update
 
 install:
-  - make build
+  - composer install
 
 script:
   - make test
