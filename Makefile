@@ -13,3 +13,10 @@ test: ## Run tests
 
 run_local:  ## Run local environment
 	docker-compose up -d
+
+lint: ## Run qa checks
+	docker run -it --rm -v $(PWD):/app -w /app jakzal/phpqa:alpine php-cs-fixer fix --dry-run --diff src
+	docker run -it --rm -v $(PWD):/app -w /app jakzal/phpqa:alpine phpstan --level=7 analyse src
+
+codestyle-fix:
+	docker run -it --rm -v $(PWD):/app -w /app jakzal/phpqa:alpine php-cs-fixer fix src
