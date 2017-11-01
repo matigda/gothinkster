@@ -21,3 +21,5 @@
 bin/
 !bin/console
 !bin/symfony_requirements
+
+/.env
