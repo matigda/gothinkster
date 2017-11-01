@@ -6,7 +6,7 @@
 ### [Demo](https://demo.realworld.io/)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
 
 
-This codebase was created to demonstrate a fully fledged fullstack application built with **[YOUR_FRAMEWORK]** including CRUD operations, authentication, routing, pagination, and more.
+This codebase was created to demonstrate a fully fledged fullstack application built with Symfony3 including CRUD operations, authentication, routing, pagination, and more.
 
 We've gone to great lengths to adhere to the Symfony3 community styleguides & best practices.
 
