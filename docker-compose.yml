@@ -5,7 +5,7 @@ services:
     volumes:
       - ./:/var/www/realworld/
     ports:
-      - 80:80
+      - ${NGINX_HOST_PORT}:80
     restart: always
     depends_on:
       - php-fpm
@@ -16,7 +16,7 @@ services:
     expose:
       - 9000
     ports:
-      - 9000:9000
+      - ${FPM_HOST_PORT}:9000
     links:
       - mysql:realworld.dev
   mysql:
@@ -24,7 +24,7 @@ services:
     expose:
       - 3306
     ports:
-      - 3306:3306
+      - ${DB_HOST_PORT}:3306
     environment:
       - MYSQL_DATABASE=realworld
       - MYSQL_USER=realworld
