@@ -12,4 +12,4 @@ test: ## Run tests
 	bin/behat
 
 run_local:  ## Run local environment
-	sudo docker-compose up -d
+	docker-compose up -d
