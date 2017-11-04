@@ -18,7 +18,8 @@ install:
   - make build
 
 script:
-  - make test
+  - bin/phpspec run
+  - bin/behat
 
 cache:
   directories:

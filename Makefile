@@ -8,8 +8,8 @@ build: ## Build project
 	composer install
 
 test: ## Run tests
-	bin/phpspec run
-	bin/behat
+	docker-compose exec php-fpm bin/phpspec run
+	docker-compose exec php-fpm bin/behat
 
 run_local:  ## Run local environment
 	sudo docker-compose up -d
