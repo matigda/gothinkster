@@ -13,3 +13,11 @@ test: ## Run tests
 
 run_local:  ## Run local environment
 	docker-compose up -d
+
+lint: ## Run qa checks
+	docker run -it --rm -v $(PWD):/app -w /app jakzal/phpqa:alpine php-cs-fixer fix --rules=@Symfony --dry-run --diff src
+	docker run -it --rm -v $(PWD):/app -w /app jakzal/phpqa:alpine phpstan --level=7 analyse src
+	docker run -it --rm -v $(PWD):/app -w /app jakzal/phpqa:alpine phpmd src text cleancode,codesize,design,unusedcode
+
+codestyle-fix:
+	docker run -it --rm -v $(PWD):/app -w /app jakzal/phpqa:alpine php-cs-fixer fix src
