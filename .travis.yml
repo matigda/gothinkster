@@ -18,7 +18,8 @@ install:
   - composer install
 
 script:
-  - make test
+  - bin/phpspec run
+  - bin/behat
 
 cache:
   directories:
