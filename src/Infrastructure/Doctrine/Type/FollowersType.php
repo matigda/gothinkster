@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace AppBundle\DoctrineType;
+namespace Infrastructure\Doctrine\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\JsonArrayType;

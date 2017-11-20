@@ -117,7 +117,7 @@ class FeatureContext implements Context
         $kernel = $this->container->get('kernel');
 
         $request = Request::create($url, $method);
-        $request->headers->set('Authorization', 'Bearer ' . $email);
+        $request->headers->set('Authorization', 'Token ' . $email);
 
         $this->response = $kernel->handle($request);
     }

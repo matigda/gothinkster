@@ -21,7 +21,7 @@ services:
             - '@repository.user'
 
     repository.user:
-        class: AppBundle\Repository\DoctrineUserRepository
+        class: Infrastructure\Doctrine\Repository\UserRepository
         factory: ['@doctrine.orm.entity_manager', getRepository]
         arguments:
             - AppBundle\Entity\User
