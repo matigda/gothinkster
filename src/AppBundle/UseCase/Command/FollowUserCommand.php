@@ -1,12 +1,21 @@
 <?php
 
-namespace AppBundle\UseCase;
+declare(strict_types=1);
 
-use AppBundle\Entity\User;
+namespace AppBundle\UseCase\Command;
 
-final class UnfollowUserCommand
+use Core\Entity\User;
+
+final class FollowUserCommand
 {
+    /**
+     * @var User
+     */
     private $follower;
+
+    /**
+     * @var User
+     */
     private $followed;
 
     public function __construct(User $follower, User $followed)

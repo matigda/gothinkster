@@ -1,6 +1,6 @@
 <?php
 
-use AppBundle\UseCase\RegisterUserCommand;
+use AppBundle\UseCase\Command\RegisterUserCommand;
 use AppBundle\Entity\User;
 use Doctrine\ORM\Tools\SchemaTool;
 use PHPUnit\Framework\Assert;

@@ -6,7 +6,7 @@ namespace AppBundle\UseCase\Command;
 
 use Core\Entity\User;
 
-class GetUserProfileCommand
+final class GetUserProfileCommand
 {
     /**
      * @var string

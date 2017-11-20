@@ -2,9 +2,10 @@
 
 namespace AppBundle\UseCase;
 
+use AppBundle\UseCase\Command\UnfollowUserCommand;
 use Core\Repository\UserRepositoryInterface;
 
-final class UnfollowUser
+final class UnfollowUserUseCase
 {
     private $users;
 

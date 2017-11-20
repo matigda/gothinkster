@@ -3,10 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\UseCase\Command\FollowUserCommand;
 use AppBundle\UseCase\Command\GetUserProfileCommand;
-use AppBundle\UseCase\RegisterUserCommand;
-use AppBundle\UseCase\FollowUserCommand;
-use AppBundle\UseCase\UnfollowUserCommand;
+use AppBundle\UseCase\Command\RegisterUserCommand;
+use AppBundle\UseCase\Command\UnfollowUserCommand;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations as Rest;

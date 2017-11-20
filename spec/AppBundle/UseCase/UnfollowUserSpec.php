@@ -2,12 +2,12 @@
 
 namespace spec\AppBundle\UseCase;
 
-use AppBundle\UseCase\UnfollowUser;
+use AppBundle\UseCase\UnfollowUserUseCase;
 use Core\Repository\UserRepositoryInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class UnfollowUserSpec extends ObjectBehavior
+class UnfollowUserUseCaseSpec extends ObjectBehavior
 {
     function let(UserRepositoryInterface $userRepository)
     {
@@ -16,6 +16,6 @@ class UnfollowUserSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType(UnfollowUser::class);
+        $this->shouldHaveType(UnfollowUserUseCase::class);
     }
 }

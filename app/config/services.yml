@@ -1,6 +1,6 @@
 services:
     use_case.register_user:
-        class: AppBundle\UseCase\RegisterUser
+        class: AppBundle\UseCase\RegisterUserUseCase
         arguments:
             - '@repository.user'
             - '@encoder.password'
@@ -11,12 +11,12 @@ services:
             - '@repository.user'
 
     use_case.user_follow_user:
-        class: AppBundle\UseCase\FollowUser
+        class: AppBundle\UseCase\FollowUserUseCase
         arguments:
             - '@repository.user'
 
     use_case.user_unfollow_user:
-        class: AppBundle\UseCase\UnfollowUser
+        class: AppBundle\UseCase\UnfollowUserUseCase
         arguments:
             - '@repository.user'
 

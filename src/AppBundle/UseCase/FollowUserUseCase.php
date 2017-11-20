@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace AppBundle\UseCase;
 
+use AppBundle\UseCase\Command\FollowUserCommand;
 use Core\Repository\UserRepositoryInterface;
 
-final class FollowUser
+final class FollowUserUseCase
 {
+    /**
+     * @var UserRepositoryInterface
+     */
     private $usersRepository;
 
     public function __construct(UserRepositoryInterface $usersRepository)

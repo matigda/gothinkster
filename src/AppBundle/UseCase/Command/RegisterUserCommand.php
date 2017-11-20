@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppBundle\UseCase;
+namespace AppBundle\UseCase\Command;
 
 final class RegisterUserCommand
 {

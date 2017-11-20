@@ -5,13 +5,21 @@ declare(strict_types=1);
 namespace AppBundle\UseCase;
 
 use AppBundle\Entity\User;
+use AppBundle\UseCase\Command\RegisterUserCommand;
 use Core\Repository\UserRepositoryInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
-final class RegisterUser
+final class RegisterUserUseCase
 {
+    /**
+     * @var UserRepositoryInterface
+     */
     private $userRepository;
+
+    /**
+     * @var PasswordEncoderInterface
+     */
     private $passwordEncoder;
 
     public function __construct(UserRepositoryInterface $users, PasswordEncoderInterface $passwordEncoder)
@@ -23,10 +31,10 @@ final class RegisterUser
     public function execute(RegisterUserCommand $command): User
     {
         $user = new User(
-            Uuid::uuid4()->toString(),
+            (string) Uuid::uuid4(),
             $command->getUsername(),
             $command->getEmail(),
-            $this->passwordEncoder->encodePassword($command->getPassword(), null)
+            $this->passwordEncoder->encodePassword($command->getPassword(), '')
         );
 
         if ($command->hasBio()) {
