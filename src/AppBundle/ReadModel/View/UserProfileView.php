@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace AppBundle\ReadModel\View;
 
@@ -12,12 +12,12 @@ class UserProfileView
     private $username;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $bio;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $image;
 

@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace AppBundle\UseCase;
 
@@ -21,12 +22,12 @@ final class RegisterUserCommand
     private $password;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $bio;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $image;
 
@@ -66,7 +67,7 @@ final class RegisterUserCommand
 
     public function hasBio(): bool
     {
-        return $this->bio !== null;
+        return null !== $this->bio;
     }
 
     public function getImage()
@@ -76,6 +77,6 @@ final class RegisterUserCommand
 
     public function hasImage(): bool
     {
-        return $this->image !== null;
+        return null !== $this->image;
     }
 }

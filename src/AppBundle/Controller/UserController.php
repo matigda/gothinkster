@@ -13,7 +13,6 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
@@ -56,7 +55,7 @@ class UserController extends Controller
         return [
             'profile' => $this->get('use_case.get_user_profile')->execute(
                 new GetUserProfileCommand($username, $this->getUser())
-            )
+            ),
         ];
     }
 
@@ -71,7 +70,7 @@ class UserController extends Controller
         return [
             'profile' => $this->get('use_case.get_user_profile')->execute(
                 new GetUserProfileCommand($username, $this->getUser())
-            )
+            ),
         ];
     }
 
@@ -86,7 +85,7 @@ class UserController extends Controller
         return [
             'profile' => $this->get('use_case.get_user_profile')->execute(
                 new GetUserProfileCommand($username, $this->getUser())
-            )
+            ),
         ];
     }
 }

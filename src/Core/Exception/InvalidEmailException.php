@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Core\Exception;
 
@@ -10,6 +10,7 @@ class InvalidEmailException extends Exception
 {
     public function __construct(string $email)
     {
-        $this->message = sprintf("Given email (%s) is invalid.", $email);
+        $message = sprintf('Given email (%s) is invalid.', $email);
+        parent::__construct($message);
     }
 }

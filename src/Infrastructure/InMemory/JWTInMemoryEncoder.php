@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace Infrastructure\InMemory;
 
@@ -21,7 +22,7 @@ class JWTInMemoryEncoder implements JWTEncoderInterface
     public function decode($token)
     {
         return [
-          'username' => $token
+          'username' => $token,
         ];
     }
 }

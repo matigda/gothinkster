@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace Core\Entity;
 
@@ -39,7 +40,7 @@ class User
     protected $image;
 
     /**
-     * @var User[]
+     * @var ArrayCollection<User>
      */
     protected $followers;
 
@@ -61,7 +62,7 @@ class User
         return $this->id;
     }
 
-    public function unfollow(User $user)
+    public function unfollow(self $user)
     {
         if ($user->followers->exists(function ($key, User $existingFollower) {
             return $this->email == $existingFollower->email;
@@ -70,7 +71,7 @@ class User
         }
     }
 
-    public function follow(User $user)
+    public function follow(self $user)
     {
         if (!$user->followers->exists(function ($key, User $existingFollower) {
             return $this->email == $existingFollower->email;

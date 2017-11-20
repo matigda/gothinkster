@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Infrastructure\Doctrine\Type;
 
@@ -28,7 +28,7 @@ class FollowersType extends JsonArrayType
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        if ($value === null || $value === '') {
+        if (null === $value || '' === $value) {
             return array();
         }
 

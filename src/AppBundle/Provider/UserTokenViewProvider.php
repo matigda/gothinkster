@@ -21,7 +21,7 @@ class UserTokenViewProvider
     public function provide(User $user): UserTokenView
     {
         $token = $this->JWTEncoder->encode([
-            'username' => $user->getEmail()
+            'username' => $user->getEmail(),
         ]);
 
         return new UserTokenView($user->getEmail(), $token, $user->getUsername(), $user->getBio(), $user->getImage());

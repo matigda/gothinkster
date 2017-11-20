@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace AppBundle\Controller;
 
@@ -16,7 +16,7 @@ trait HasTokenViewControllerTrait
         $userTokenView = $this->container->get('provider.user_token_view')->provide($user);
 
         return [
-            'user' => $userTokenView
+            'user' => $userTokenView,
         ];
     }
 }
