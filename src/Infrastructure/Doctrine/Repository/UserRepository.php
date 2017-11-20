@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace AppBundle\Repository;
+namespace Infrastructure\Doctrine\Repository;
 
 use AppBundle\ReadModel\Query\UserProfileQuery;
 use AppBundle\ReadModel\View\UserProfileView;
@@ -10,7 +10,7 @@ use Core\Entity\User;
 use Core\Repository\UserRepositoryInterface;
 use Doctrine\ORM\EntityRepository;
 
-class DoctrineUserRepository extends EntityRepository implements UserRepositoryInterface, UserProfileQuery
+class UserRepository extends EntityRepository implements UserRepositoryInterface, UserProfileQuery
 {
     /**
      * {@inheritdoc}

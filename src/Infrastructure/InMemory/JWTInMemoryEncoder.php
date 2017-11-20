@@ -1,11 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace AppBundle\JWT;
+namespace Infrastructure\InMemory;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 
-class InMemoryEncoder implements JWTEncoderInterface
+class JWTInMemoryEncoder implements JWTEncoderInterface
 {
     /**
      * {@inheritdoc}
