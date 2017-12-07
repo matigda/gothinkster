@@ -1,0 +1,26 @@
+sudo: false
+language: php
+php:
+  - "7.1"
+  - "7.2"
+
+env:
+  global:
+    - SYMFONY_ENV=test
+  matrix:
+    - DB=sqlite
+
+before-install:
+  - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
+  - composer self-update
+
+install:
+  - composer install
+
+script:
+  - bin/phpspec run
+  - bin/behat
+
+cache:
+  directories:
+    - $HOME/.composer/cache

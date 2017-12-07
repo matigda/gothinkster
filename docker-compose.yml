@@ -1,0 +1,32 @@
+version: '2'
+services:
+  nginx:
+    build: ./docker/nginx
+    volumes:
+      - ./:/var/www/realworld/
+    ports:
+      - 80:80
+    restart: always
+    depends_on:
+      - php-fpm
+  php-fpm:
+    build: ./docker/php-fpm
+    volumes:
+      - ./:/var/www/realworld/
+    ports:
+        - "9090:9000"
+    environment:
+      XDEBUG_CONFIG: "remote_host=10.0.34.204"
+      PHP_IDE_CONFIG: "serverName=PHPSTORM"
+      PHP_XDEBUG_ENABLED: 1
+    links:
+      - mysql:realworld.dev
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=realworld
+      - MYSQL_USER=realworld
+      - MYSQL_PASSWORD=realworld
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true

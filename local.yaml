@@ -1,0 +1,41 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: Install required packages.
+      pacman:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - php
+        - php-intl
+        - php-sqlite
+        - composer
+        - docker
+        - docker-compose
+
+    - name: Configure local php.
+      lineinfile:
+        path: /etc/php/php.ini
+        line: "extension={{ item }}"
+        regexp: "extension={{ item }}$"
+        state: present
+        insertafter: '^;extension='
+      with_items:
+        - 'intl.so'
+        - 'iconv.so'
+        - 'curl.so'
+        - 'pdo_mysql.so'
+        - 'pdo_sqlite.so'
+
+    - name: Ensure docker is started.
+      service:
+        name: docker
+        state: started
+
+    - name: Update /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        line: '127.0.0.1  realworld.dev'
+        state: present
