@@ -1,4 +1,6 @@
-twig:
-    paths: ['%kernel.project_dir%/templates']
-    debug: '%kernel.debug%'
-    strict_variables: '%kernel.debug%'
+#twig:
+#    paths: ['%kernel.project_dir%/templates']
+#    debug: '%kernel.debug%'
+#    strict_variables: '%kernel.debug%'
+
+# This bundle here is only because of bug in FOSRestBundle

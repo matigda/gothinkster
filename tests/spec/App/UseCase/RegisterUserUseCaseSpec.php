@@ -24,7 +24,7 @@ class RegisterUserUseCaseSpec extends ObjectBehavior
 
     function it_creates_user_and_adds_to_repository(UserRepositoryInterface $userRepository, PasswordEncoderInterface $passwordEncoder)
     {
-        $passwordEncoder->encodePassword($password = 'pass', null)->willReturn($encodedPass = 'encodedpass');
+        $passwordEncoder->encodePassword($password = 'pass', '')->willReturn($encodedPass = 'encodedpass');
 
         $userRepository->add(Argument::type(User::class));
 
