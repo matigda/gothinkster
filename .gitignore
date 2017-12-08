@@ -1,26 +1,21 @@
-*.retry
-/.web-server-pid
-/app/config/parameters.yml
-/build/
-/phpunit.xml
-.idea/
-/var/*
-!/var/cache
-!/var/jwt
-/var/cache/*
-!var/cache/.gitkeep
-!/var/logs
-/var/logs/*
-!var/logs/.gitkeep
-!/var/sessions
-/var/sessions/*
-!var/sessions/.gitkeep
-!var/SymfonyRequirements.php
-/vendor/
-/web/bundles/
-bin/
-!bin/console
-!bin/symfony_requirements
 
-/.env
-/.php_cs.cache
+###> symfony/framework-bundle ###
+.env
+/public/bundles/
+/var/
+/vendor/
+bin
+!bin/console
+###< symfony/framework-bundle ###
+
+###> behat/symfony2-extension ###
+behat.yml
+###< behat/symfony2-extension ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+###< phpunit/phpunit ###
+
+###> PHPSTORM ###
+.idea
+###< PHPSTORM ###

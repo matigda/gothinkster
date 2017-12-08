@@ -1,80 +1,68 @@
 {
     "name": "mati/gothinkster",
-    "license": "proprietary",
     "type": "project",
-    "autoload": {
-        "psr-4": {
-            "AppBundle\\": "src/AppBundle",
-            "Core\\": "src/Core",
-            "Infrastructure\\": "src/Infrastructure"
-        },
-        "classmap": [
-            "app/AppKernel.php",
-            "app/AppCache.php"
-        ]
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        },
-        "files": [
-            "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
-        ]
-    },
+    "license": "proprietary",
     "require": {
-        "php": ">=7.0.0",
-        "symfony/symfony": "3.3.*",
-        "doctrine/doctrine-bundle": "^1.6",
-        "doctrine/doctrine-migrations-bundle": "^1.2",
+        "php": "^7.1.3",
+        "doctrine/doctrine-migrations-bundle": "^1.3",
         "doctrine/orm": "^2.5",
-        "friendsofsymfony/rest-bundle": "^2.2",
-        "incenteev/composer-parameter-handler": "^2.0",
+        "friendsofsymfony/rest-bundle": "^2.3",
         "lexik/jwt-authentication-bundle": "^2.4",
         "ramsey/uuid": "^3.7",
-        "sensio/distribution-bundle": "^5.0.19",
-        "sensio/framework-extra-bundle": "^3.0.2",
-        "symfony/monolog-bundle": "^3.1.0",
-        "symfony/polyfill-apcu": "^1.0",
-        "symfony/swiftmailer-bundle": "^2.3.10",
-        "twig/twig": "^1.0||^2.0"
+        "sensio/framework-extra-bundle": "^5.1",
+        "symfony/console": "^4.0",
+        "symfony/flex": "^1.0",
+        "symfony/framework-bundle": "^4.0",
+        "symfony/lts": "^4@dev",
+        "symfony/serializer-pack": "^1.0",
+        "symfony/yaml": "^4.0"
     },
     "require-dev": {
-        "behat/behat": "^3.3",
-        "behat/symfony2-extension": "^2.1",
-        "phpspec/phpspec": "^4.0",
-        "phpunit/phpunit": "^6.3",
-        "sensio/generator-bundle": "^3.0"
-    },
-    "scripts": {
-        "symfony-scripts": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
-        ],
-        "post-install-cmd": [
-            "@symfony-scripts"
-        ],
-        "post-update-cmd": [
-            "@symfony-scripts"
-        ]
+        "behat/behat": "^3.4",
+        "behat/symfony2-extension": "dev-sf4",
+        "phpspec/phpspec": "^4.2",
+        "phpunit/phpunit": "^6.5",
+        "symfony/dotenv": "^4.0",
+        "symfony/twig-bundle": "^4.0"
     },
     "config": {
         "bin-dir": "bin",
+        "preferred-install": {
+            "*": "dist"
+        },
         "sort-packages": true
     },
-    "extra": {
-        "symfony-app-dir": "app",
-        "symfony-bin-dir": "bin",
-        "symfony-var-dir": "var",
-        "symfony-web-dir": "web",
-        "symfony-tests-dir": "tests",
-        "symfony-assets-install": "relative",
-        "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/App",
+            "Core\\": "src/Core",
+            "Infrastructure\\": "src/Infrastructure"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
         },
-        "branch-alias": null
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "id": "01C0K3XZWG0C6T812165TWHCVR",
+            "allow-contrib": false
+        }
     }
 }

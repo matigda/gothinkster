@@ -1,0 +1,14 @@
+default:
+    autoload: ['%paths.base%/tests/functional/bootstrap']
+    suites:
+        default:
+            contexts:
+                - FeatureContext:
+                    - '@service_container'
+            paths: ['%paths.base%/tests/functional']
+
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: tests/functional/bootstrap/bootstrap.php
+                class: App\Kernel

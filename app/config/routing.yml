@@ -1,8 +1,0 @@
-app:
-    resource: '@AppBundle/Controller/'
-    prefix: /api/
-    type: rest
-
-login_check:
-    path: /api/users/login_check
-    methods: [POST]

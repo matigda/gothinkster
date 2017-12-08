@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Infrastructure\Doctrine\Repository;
 
-use AppBundle\ReadModel\Query\UserProfileQuery;
-use AppBundle\ReadModel\View\UserProfileView;
+use App\ReadModel\Query\UserProfileQuery;
+use App\ReadModel\View\UserProfileView;
 use Core\Entity\User;
 use Core\Repository\UserRepositoryInterface;
 use Doctrine\ORM\EntityRepository;

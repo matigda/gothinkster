@@ -1,9 +1,0 @@
-default:
-  extensions:
-      Behat\Symfony2Extension: ~
-
-  suites:
-      main:
-          contexts:
-              - FeatureContext:
-                  container: '@service_container'
