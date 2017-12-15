@@ -80,6 +80,29 @@ class User
         }
     }
 
+    public function update(string $email = '', string $username = '', string $password = '', string $image = '', string $bio = '')
+    {
+        if ('' !== $email) {
+            $this->email = $email;
+        }
+
+        if ('' !== $username) {
+            $this->username = $username;
+        }
+
+        if ('' !== $password) {
+            $this->password = $password;
+        }
+
+        if ('' !== $image) {
+            $this->image = $image;
+        }
+
+        if ('' !== $bio) {
+            $this->bio = $bio;
+        }
+    }
+
     public function getFollowers()
     {
         return $this->followers;

@@ -1,0 +1,9 @@
+{
+  "user": {
+    "email": "some-email@like.it",
+    "username": "Arnold",
+    "image": "image",
+    "token": "jwt.token.here",
+    "bio": "I'll be back"
+  }
+}

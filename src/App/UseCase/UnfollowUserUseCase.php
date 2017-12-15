@@ -7,11 +7,14 @@ use Core\Repository\UserRepositoryInterface;
 
 final class UnfollowUserUseCase
 {
-    private $users;
+    /**
+     * @var UserRepositoryInterface
+     */
+    private $usersRepository;
 
-    public function __construct(UserRepositoryInterface $users)
+    public function __construct(UserRepositoryInterface $usersRepository)
     {
-        $this->users = $users;
+        $this->usersRepository = $usersRepository;
     }
 
     public function execute(UnfollowUserCommand $command): void
@@ -19,6 +22,6 @@ final class UnfollowUserUseCase
         $follower = $command->getFollower();
         $follower->unfollow($command->getFollowed());
 
-        $this->users->save();
+        $this->usersRepository->save();
     }
 }

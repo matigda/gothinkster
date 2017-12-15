@@ -2,6 +2,7 @@
 
 use App\UseCase\Command\RegisterUserCommand;
 use App\Entity\User;
+use App\UseCase\Command\UpdateUserCommand;
 use Doctrine\ORM\Tools\SchemaTool;
 use PHPUnit\Framework\Assert;
 use Behat\Behat\Context\Context;
@@ -111,17 +112,29 @@ class FeatureContext implements Context
 
     /**
      * @When I send :method request on :url authenticated as :email
+     * @When I send :method request on :url authenticated as :email with data from :fileName
      */
-    public function iSendRequestOnAuthenticatedAs($method, $url, $email)
+    public function iSendRequestOnAuthenticatedAs($method, $url, $email, $filename = null)
     {
         $kernel = $this->container->get('kernel');
 
-        $request = Request::create($url, $method);
+        $request = $filename ?
+            Request::create($url, $method, [], [], [], [], file_get_contents(__DIR__ . '/../data/' . $filename)) :
+            Request::create($url, $method);
         $request->headers->set('Authorization', 'Token ' . $email);
 
         $this->response = $kernel->handle($request);
     }
 
+
+    /**
+     * @Then user :field has :value
+     */
+    public function userHas($field, $value)
+    {
+//        var_dump($field);
+//        var_dump($value);
+    }
 
     /**
      * @Then user is added to database
