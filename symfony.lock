@@ -131,12 +131,6 @@
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
     },
-    "phpspec/php-diff": {
-        "version": "v1.1.0"
-    },
-    "phpspec/phpspec": {
-        "version": "4.2.4"
-    },
     "phpspec/prophecy": {
         "version": "1.7.3"
     },
@@ -313,9 +307,6 @@
     },
     "symfony/polyfill-util": {
         "version": "v1.6.0"
-    },
-    "symfony/process": {
-        "version": "v4.0.1"
     },
     "symfony/property-access": {
         "version": "v4.0.1"

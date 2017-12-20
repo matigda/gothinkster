@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\UseCase;
 
 use App\UseCase\Command\UpdateUserCommand;
+use Core\Entity\User;
 use Core\Repository\UserRepositoryInterface;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
@@ -26,7 +27,7 @@ final class UpdateUserUseCase
         $this->userRepository = $userRepository;
     }
 
-    public function execute(UpdateUserCommand $command)
+    public function execute(UpdateUserCommand $command): User
     {
         $userToUpdate = $command->getUserToUpdate();
 
@@ -39,5 +40,7 @@ final class UpdateUserUseCase
         );
 
         $this->userRepository->save();
+
+        return $userToUpdate;
     }
 }

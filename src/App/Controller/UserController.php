@@ -56,7 +56,7 @@ class UserController extends Controller
     {
         $userData = json_decode($request->getContent(), true)['user'];
 
-        $this->get('use_case.update_user')->execute(
+        $user = $this->get('use_case.update_user')->execute(
             new UpdateUserCommand(
                 $this->getUser(),
                 $userData['email'] ?? '',
@@ -67,7 +67,7 @@ class UserController extends Controller
             )
         );
 
-        return $this->provideUserTokenView($this->getUser());
+        return $this->provideUserTokenView($user);
     }
 
     /**

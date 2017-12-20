@@ -45,8 +45,7 @@ final class UpdateUserCommand
         string $newPassword = '',
         string $newImage = '',
         string $newBio = ''
-    )
-    {
+    ) {
         $this->userToUpdate = $userToUpdate;
         $this->newEmail = $newEmail;
         $this->newUsername = $newUsername;

@@ -22,9 +22,9 @@ final class RegisterUserUseCase
      */
     private $passwordEncoder;
 
-    public function __construct(UserRepositoryInterface $users, PasswordEncoderInterface $passwordEncoder)
+    public function __construct(UserRepositoryInterface $userRepository, PasswordEncoderInterface $passwordEncoder)
     {
-        $this->userRepository = $users;
+        $this->userRepository = $userRepository;
         $this->passwordEncoder = $passwordEncoder;
     }
 
