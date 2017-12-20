@@ -20,6 +20,9 @@ Feature: Testing user endpoints
 
   Scenario: Updating user
     Given user from "registration.json" exists
+    When I send "PUT" request on "/api/user" authenticated as "jake@jake.jake" with data from "update.json"
+    Then I get "200" http status
+    And response body is same as in "updatedUser.json"
 
   Scenario: Getting user profile
     Given user from "registration.json" exists

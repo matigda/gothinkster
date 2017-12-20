@@ -7,8 +7,10 @@ use App\UseCase\Command\FollowUserCommand;
 use App\UseCase\Command\GetUserProfileCommand;
 use App\UseCase\Command\RegisterUserCommand;
 use App\UseCase\Command\UnfollowUserCommand;
+use App\UseCase\Command\UpdateUserCommand;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Delete;
+use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -45,6 +47,27 @@ class UserController extends Controller
     public function getCurrentUserAction()
     {
         return $this->provideUserTokenView($this->getUser());
+    }
+
+    /**
+     * @Put("/user")
+     */
+    public function updateUserAction(Request $request)
+    {
+        $userData = json_decode($request->getContent(), true)['user'];
+
+        $user = $this->get('use_case.update_user')->execute(
+            new UpdateUserCommand(
+                $this->getUser(),
+                $userData['email'] ?? '',
+                $userData['username'] ?? '',
+                $userData['password'] ?? '',
+                $userData['image'] ?? '',
+                $userData['bio'] ?? ''
+            )
+        );
+
+        return $this->provideUserTokenView($user);
     }
 
     /**

@@ -27,6 +27,13 @@ services:
         arguments:
             - '@repository.user'
 
+    use_case.update_user:
+        class: App\UseCase\UpdateUserUseCase
+        public: true
+        arguments:
+            - '@encoder.password'
+            - '@repository.user'
+
     repository.user:
         class: Infrastructure\Doctrine\Repository\UserRepository
         factory: ['@doctrine.orm.entity_manager', getRepository]

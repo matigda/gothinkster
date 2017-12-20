@@ -46,9 +46,7 @@ class User
 
     public function __construct(string $id, string $username, string $email, string $password)
     {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new InvalidEmailException($email);
-        }
+        $this->validateEmail($email);
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
@@ -80,6 +78,30 @@ class User
         }
     }
 
+    public function update(string $email = '', string $username = '', string $password = '', string $image = '', string $bio = '')
+    {
+        if ('' !== $email) {
+            $this->validateEmail($email);
+            $this->email = $email;
+        }
+
+        if ('' !== $username) {
+            $this->username = $username;
+        }
+
+        if ('' !== $password) {
+            $this->password = $password;
+        }
+
+        if ('' !== $image) {
+            $this->image = $image;
+        }
+
+        if ('' !== $bio) {
+            $this->bio = $bio;
+        }
+    }
+
     public function getFollowers()
     {
         return $this->followers;
@@ -93,5 +115,12 @@ class User
     public function setImage(string $image)
     {
         $this->image = $image;
+    }
+
+    protected function validateEmail(string $email)
+    {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidEmailException($email);
+        }
     }
 }
