@@ -4,21 +4,19 @@ declare(strict_types = 1);
 
 namespace User\Application\Controller;
 
+use SharedKernel\Application\JsonResponseTrait;
+use SharedKernel\Application\UserAwareTrait;
 use User\Application\UseCase\Command\GetUserProfileCommand;
 use User\Application\UseCase\Command\UnfollowUserCommand;
 use User\Application\UseCase\GetUserProfileUseCase;
 use User\Application\UseCase\UnfollowUserUseCase;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use User\Domain\UserRepositoryInterface;
 
 class UserDeleteActionsController
 {
-    /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
+    use JsonResponseTrait, UserAwareTrait;
 
     /**
      * @var UnfollowUserUseCase
@@ -59,25 +57,10 @@ class UserDeleteActionsController
         $userToUnfollow = $this->userRepository->findUserByUsername($username);
         $this->unfollowUserUseCase->execute(new UnfollowUserCommand($this->getUser(), $userToUnfollow));
 
-        return new JsonResponse(
-            $this->serializer->serialize(
-                [
-                    'profile' => $this->getUserProfileUseCase->execute(
-                        new GetUserProfileCommand($username, $this->getUser())
-                    ),
-                ],
-                'json'
+        return $this->returnJsonResponse([
+            'profile' => $this->getUserProfileUseCase->execute(
+                new GetUserProfileCommand($username, $this->getUser())
             ),
-            200,
-            [],
-            true
-        );
-    }
-
-    private function getUser()
-    {
-        $token = $this->tokenStorage->getToken();
-
-        return $token->getUser();
+        ]);
     }
 }
