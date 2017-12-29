@@ -4,17 +4,20 @@ declare(strict_types = 1);
 
 namespace User\Application\Controller;
 
+use SharedKernel\Application\JsonResponseTrait;
+use SharedKernel\Application\UserAwareTrait;
 use User\Application\UseCase\Command\GetUserTokenViewCommand;
 use User\Application\UseCase\Command\UpdateUserCommand;
 use User\Application\UseCase\GetUserTokenViewUseCase;
 use User\Application\UseCase\UpdateUserUseCase;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class UserPutActionsController
 {
+    use JsonResponseTrait, UserAwareTrait;
+
     /**
      * @var UpdateUserUseCase
      */
@@ -62,23 +65,8 @@ class UserPutActionsController
             )
         );
 
-        return new JsonResponse(
-            $this->serializer->serialize(
-                [
-                    'user' => $this->getUserTokenViewUseCase->execute(new GetUserTokenViewCommand($user))
-                ],
-                'json'
-            ),
-            200,
-            [],
-            true
-        );
-    }
-
-    private function getUser()
-    {
-        $token = $this->tokenStorage->getToken();
-
-        return $token->getUser();
+        return $this->returnJsonResponse([
+            'user' => $this->getUserTokenViewUseCase->execute(new GetUserTokenViewCommand($user))
+        ]);
     }
 }
