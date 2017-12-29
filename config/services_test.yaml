@@ -1,3 +1,11 @@
 services:
     lexik_jwt_authentication.encoder:
-        class: Infrastructure\InMemory\JWTInMemoryEncoder
+        class: User\Infrastructure\InMemory\JWTInMemoryEncoder
+
+
+    use_case.register_user:
+        public: true
+        class: User\Application\UseCase\RegisterUserUseCase
+        arguments:
+            - '@repository.user'
+            - '@encoder.password'

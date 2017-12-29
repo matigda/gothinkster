@@ -1,8 +1,38 @@
-app:
-    resource: './Controller/'
-    prefix: /api/
-    type: rest
-
 login_check:
     path: /api/users/login_check
     methods: [POST]
+
+user_token_view:
+    path:     /api/user
+    defaults: { _controller: controller.user.get_actions:userTokenViewAction }
+    methods: [GET]
+
+user_profile:
+    path:     /api/profiles/{username}
+    defaults: { _controller: controller.user.get_actions:profileAction }
+    methods: [GET]
+
+user_register:
+    path:     /api/users
+    defaults: { _controller: controller.user.post_actions:registerAction }
+    methods: [POST]
+
+user_follow_user:
+    path:     /api/profiles/{username}/follow
+    defaults: { _controller: controller.user.post_actions:followUserAction }
+    methods: [POST]
+
+user_login:
+    path:     /api/users/login
+    defaults: { _controller: controller.user.post_actions:loginAction }
+    methods: [POST]
+
+user_update:
+    path:     /api/user
+    defaults: { _controller: controller.user.put_actions:updateUserAction }
+    methods: [PUT]
+
+user_unfollow:
+    path:     /api/profiles/{username}/follow
+    defaults: { _controller: controller.user.delete_actions:unfollowUserAction }
+    methods: [DELETE]
