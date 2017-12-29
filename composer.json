@@ -33,7 +33,7 @@
     "autoload": {
         "psr-4": {
             "User\\": "src/User",
-            "SharedKernel\\": "src/SharedKernel",
+            "SharedKernel\\": "src/SharedKernel"
         }
     },
     "autoload-dev": {
