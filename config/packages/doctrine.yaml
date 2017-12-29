@@ -19,8 +19,8 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
         mappings:
-            App:
+            User:
                 is_bundle: false
                 type: yml
-                dir: '%kernel.project_dir%/src/App/Resources/config/doctrine'
-                prefix: 'App\Entity'
+                dir: '%kernel.project_dir%/src/User/Application/Resources/config/doctrine'
+                prefix: 'User\Application\Entity'

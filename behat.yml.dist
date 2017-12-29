@@ -3,12 +3,13 @@ default:
     suites:
         default:
             contexts:
-                - FeatureContext:
+                - UserContext:
                     - '@service_container'
+                    - '@use_case.register_user'
             paths: ['%paths.base%/tests/functional']
 
     extensions:
         Behat\Symfony2Extension:
             kernel:
                 bootstrap: tests/functional/bootstrap/bootstrap.php
-                class: App\Kernel
+                class: SharedKernel\Infrastructure\Symfony\Kernel

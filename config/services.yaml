@@ -3,51 +3,85 @@ parameters:
 
 services:
     use_case.register_user:
-        class: App\UseCase\RegisterUserUseCase
-        public: true
+        class: User\Application\UseCase\RegisterUserUseCase
         arguments:
             - '@repository.user'
             - '@encoder.password'
 
     use_case.get_user_profile:
-        class: App\UseCase\GetUserProfileUseCase
-        public: true
+        class: User\Application\UseCase\GetUserProfileUseCase
         arguments:
             - '@repository.user'
 
+    use_case.get_user_token_view:
+        class: User\Application\UseCase\GetUserTokenViewUseCase
+        arguments:
+            - '@lexik_jwt_authentication.encoder'
+
     use_case.user_follow_user:
-        class: App\UseCase\FollowUserUseCase
-        public: true
+        class: User\Application\UseCase\FollowUserUseCase
         arguments:
             - '@repository.user'
 
     use_case.user_unfollow_user:
-        class: App\UseCase\UnfollowUserUseCase
-        public: true
+        class: User\Application\UseCase\UnfollowUserUseCase
         arguments:
             - '@repository.user'
 
     use_case.update_user:
-        class: App\UseCase\UpdateUserUseCase
-        public: true
+        class: User\Application\UseCase\UpdateUserUseCase
         arguments:
             - '@encoder.password'
             - '@repository.user'
 
     repository.user:
-        class: Infrastructure\Doctrine\Repository\UserRepository
+        class: User\Infrastructure\Doctrine\Repository\UserRepository
         factory: ['@doctrine.orm.entity_manager', getRepository]
         arguments:
-            - App\Entity\User
+            - User\Application\Entity\User
 
     encoder.password:
         class: Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder
-        public: true
         arguments:
             - 12
 
-    provider.user_token_view:
-        class: App\Provider\UserTokenViewProvider
+    controller.user.get_actions:
+        class: User\Application\Controller\UserGetActionsController
         public: true
         arguments:
-            - '@lexik_jwt_authentication.encoder'
+            - '@use_case.get_user_profile'
+            - '@use_case.get_user_token_view'
+            - '@security.token_storage'
+            - '@serializer'
+
+    controller.user.post_actions:
+        class: User\Application\Controller\UserPostActionsController
+        public: true
+        arguments:
+            - '@use_case.register_user'
+            - '@use_case.get_user_token_view'
+            - '@use_case.user_follow_user'
+            - '@use_case.get_user_profile'
+            - '@security.token_storage'
+            - '@repository.user'
+            - '@serializer'
+            - '@encoder.password'
+
+    controller.user.put_actions:
+        class: User\Application\Controller\UserPutActionsController
+        public: true
+        arguments:
+            - '@security.token_storage'
+            - '@use_case.update_user'
+            - '@use_case.get_user_token_view'
+            - '@serializer'
+
+    controller.user.delete_actions:
+        class: User\Application\Controller\UserDeleteActionsController
+        public: true
+        arguments:
+            - '@security.token_storage'
+            - '@use_case.user_unfollow_user'
+            - '@serializer'
+            - '@use_case.get_user_profile'
+            - '@repository.user'
