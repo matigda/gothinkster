@@ -22,5 +22,5 @@ doctrine:
             User:
                 is_bundle: false
                 type: yml
-                dir: '%kernel.project_dir%/src/User/Application/Resources/config/doctrine'
+                dir: '%kernel.project_dir%/src/User/Infrastructure/Doctrine/config'
                 prefix: 'User\Application\Entity'
